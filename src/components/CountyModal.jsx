@@ -46,10 +46,10 @@ export default function CountyModal({ countyId, onClose }) {
   const paths = constituencies.map(c => c.svgPath);
   const viewBox = getViewBoxFromPaths(paths);
 
-  function getPathCentroid(d) {
+  /*function getPathCentroid(d) {
     const [x0, y0, x1, y1] = pathBounds(d);
     return [(x0 + x1) / 2, (y0 + y1) / 2];
-  }
+  }*/
 
 
   return (
@@ -127,15 +127,6 @@ export default function CountyModal({ countyId, onClose }) {
                 }}
                   style={{ vectorEffect: "non-scaling-stroke", strokeWidth: 0.6 }}
                 />
-                <text
-                  x={getPathCentroid(c.svgPath)[0]}
-                  y={getPathCentroid(c.svgPath)[1]}
-                  textAnchor="middle"
-                  className="fill-gray-700 dark:fill-white  text-black"
-                  fontSize="0.005px"
-                >
-                  {c.name}
-                </text>
               </g>
             ))}
           </svg>
