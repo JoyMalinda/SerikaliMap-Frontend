@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 import NavBar from "../components/NavBar";
 import SearchResult from "../components/SearchResult";
 import CountyModal from "../components/CountyModal";
+import Presidents from "../components/PresidentsTable";
 
 export default function LandingPage() {
   const [query, setQuery] = useState("");
@@ -198,6 +199,7 @@ export default function LandingPage() {
       )}
 
     </section>
+    <Presidents />
     </div>
   );
 }
