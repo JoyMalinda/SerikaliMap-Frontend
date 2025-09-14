@@ -1,6 +1,7 @@
 // src/components/NavBar.jsx
 import React, { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,23 +37,25 @@ export default function NavBar() {
 
   return (
     <nav className="bg-green-100 w-full fixed top-0 left-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" mx-auto px-2 sm:px-4 lg:px-6">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
-          <div className="flex-shrink-0 text-2xl font-bold">
-            <span className="text-green-800 ">Serikali</span>
-            <span className="text-black">Map</span>
+          <div className="flex-shrink-0 text-2xl font-bold ml-8">
+            <Link to="/">
+              <span className="text-green-800 ">Serikali</span>
+              <span className="text-black">Map</span>
+            </Link>
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-6 items-center">
-            <a href="#" className="text-gray-800  hover:underline">
+          <div className="hidden md:flex space-x-6 items-center mr-12">
+            <a href="/" className="text-gray-800  hover:underline">
               Home
             </a>
-            <a href="#" className="text-gray-800  hover:underline">
+            <a href="/maps/counties" className="text-gray-800  hover:underline">
               Maps
             </a>
-            <a href="#" className="text-gray-800 hover:underline">
+            <a href="/about" className="text-gray-800 hover:underline">
               About
             </a>
             <button
@@ -87,19 +90,19 @@ export default function NavBar() {
       >
         <div className="px-4 pb-4 space-y-3 bg-green-100 dark:bg-gray-800">
           <a
-            href="#"
+            href="/"
             className="block text-gray-800 dark:text-gray-200 hover:underline"
           >
             Home
           </a>
           <a
-            href="#"
+            href="/maps/counties"
             className="block text-gray-800 dark:text-gray-200 hover:underline"
           >
             Maps
           </a>
           <a
-            href="#"
+            href="/about"
             className="block text-gray-800 dark:text-gray-200 hover:underline"
           >
             About

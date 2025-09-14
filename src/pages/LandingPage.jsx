@@ -46,8 +46,8 @@ export default function LandingPage() {
 
   return (
     <div className="bg-white dark:bg-gray-900 min-h-screen">
-    <section className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 px-6 py-12 lg:px-16 bg-green-100">
     <NavBar />
+    <section className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 px-6 py-12 lg:px-16 bg-green-100">
       {/* Left Side */}
       <div className="space-y-6">
         <h1 className="text-4xl font-bold text-gray-900">
