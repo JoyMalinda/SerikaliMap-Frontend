@@ -53,8 +53,8 @@ export default function LandingPage() {
         <h1 className="text-4xl font-bold text-gray-900">
           Who Leads Where You Live?
         </h1>
-        <p className="text-lg text-gray-600 max-w-xl">
-          Discover your elected officials, past and present. Search by name,
+        <p className="text-3xl text-gray-600 max-w-xl my-12">
+          Discover your <span className="italic text-black">elected</span> officials, past and present. Search by name,
           county, or party and explore Kenya’s political history.
         </p>
 
@@ -65,14 +65,14 @@ export default function LandingPage() {
         >
           <input
             type="text"
-            placeholder="Enter a location..."
+            placeholder="Search a location..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="flex-1 px-4 py-2 text-gray-700 outline-none"
           />
           <button
             type="submit"
-            className="bg-green-700 hover:bg-white text-white  hover:text-green-700 transition px-4 flex items-center justify-center border-l"
+            className="bg-green-200 hover:bg-green-800 text-green-800  hover:text-white transition px-4 flex items-center justify-center border-l"
           >
             <Search className="w-5 h-5" />
           </button>
