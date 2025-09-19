@@ -74,7 +74,7 @@ export default function NavBar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-md text-gray-800 dark:text-gray-200"
+              className="p-2 rounded-md text-gray-800 hover:scale-105 transition"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -91,7 +91,7 @@ export default function NavBar() {
         <div className="px-4 pb-4 space-y-3 bg-green-100 dark:bg-gray-800">
           <a
             href="/"
-            className="block text-gray-800 dark:text-gray-200 hover:underline"
+            className="block text-gray-800 dark:text-gray-200 hover:underline pt-2"
           >
             Home
           </a>
@@ -121,7 +121,7 @@ export default function NavBar() {
             ) : (
               <>
                 <Sun className="w-5 h-5 text-yellow-400" />
-                <span className="text-gray-200">Light Mode</span>
+                <span className="text-gray-800">Light Mode</span>
               </>
             )}
           </button>

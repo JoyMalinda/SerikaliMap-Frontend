@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "../utils/axiosInstance";
 import { Search } from "lucide-react";
+
 import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 import SearchResult from "../components/SearchResult";
 import CountyModal from "../components/CountyModal";
 import Presidents from "../components/PresidentsTable";
@@ -50,7 +52,7 @@ export default function LandingPage() {
     <section className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 px-6 py-12 lg:px-16 bg-green-100">
       {/* Left Side */}
       <div className="space-y-6">
-        <h1 className="text-4xl font-bold text-gray-900">
+        <h1 className="text-4xl font-bold text-gray-900 mt-8">
           Who Leads Where You Live?
         </h1>
         <p className="text-3xl text-gray-600 max-w-xl my-12">
@@ -200,6 +202,7 @@ export default function LandingPage() {
 
     </section>
     <Presidents />
+    <Footer />
     </div>
   );
 }

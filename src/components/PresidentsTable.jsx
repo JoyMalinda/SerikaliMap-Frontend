@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "../utils/axiosInstance";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { Search } from "lucide-react";
 
 export default function Presidents() {
@@ -86,41 +86,51 @@ export default function Presidents() {
   });
 
   const handleNameSearch = (searchName) => {
+    if (!searchName.trim())
+      toast.error("Please enter a name to search");
+    if (searchName.length > 50)
+      toast.error("Name is too long");
   setSearchName(searchName)
 };
 
 const handleYearSearch = (year) => {
-    setYear(year)
+  if (isNaN(year) || year < 1963)
+    toast.error("Please enter a valid year");
+  if (year > new Date().getFullYear())
+    toast.error("Year cannot be in the future");
+  if (year < 2002)
+    toast.error("Data is only available from 2002 onwards");
+  setYear(year)
 };
 
 
   return (
-    <div className="space-y-6 mx-12 my-6">
+    <div className="space-y-6 mx-12 my-6 dark:bg-gray-900">
       <Toaster />
 
       {/* Current Leaders */}
-      <h2 className="text-2xl font-semibold">Elected National Officials</h2>
+      <h2 className="text-2xl font-semibold dark:text-white">Elected National Officials</h2>
       <div className="flex flex-wrap gap-4">
         {current_leaders.map((leader, idx) => (
           <div
             key={idx}
-            className="flex items-center border-2 border-green-800 rounded-xl p-1 shadow hover:shadow-lg transition bg-gray-50 dark:bg-gray-800 mb-3 mr-4 w-[400px]"
+            className="flex items-center border-2 border-green-800 rounded-lg p-1 shadow hover:shadow-lg transition bg-gray-50 dark:bg-gray-800 mb-3 mr-4 w-[400px]"
           >
             <img
               src={leader.photo}
               alt={leader.name}
-              className="w-16 h-16 object-cover rounded-lg border border-gray-200 dark:border-b-gray-700 mr-2"
+              className="w-16 h-16 object-cover rounded-lg border border-gray-200 dark:border-gray-700 mr-2"
             />
             <div>
-              <h2 className="font-semibold text-lg">H.E. {leader.name}</h2>
-              <p className="text-sm text-gray-600">{leader.position}</p>
+              <h2 className="font-semibold text-lg dark:text-gray-100">H.E. {leader.name}</h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{leader.position}</p>
             </div>
           </div>
         ))}
       </div>
 
       {/* Search & Filters */}
-<div className="bg-white shadow rounded-lg p-4 mb-6">
+<div className="bg-white dark:bg-gray-800 shadow rounded-lg p-4 mb-6">
   <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 gap-4">
     {/* Name Search */}
     <div className="flex flex-1">
@@ -129,12 +139,12 @@ const handleYearSearch = (year) => {
         placeholder="Search by name"
         value={searchName}
         onChange={(e) => setSearchName(e.target.value)}
-        className="flex-1 border-y border-l border-gray-300 rounded-l-lg px-3 py-2 focus:ring-2 focus:ring-green-500 focus:outline-none"
+        className="flex-1 border-y border-l border-gray-300 rounded-l-lg px-3 py-2 focus:ring-1 focus:ring-green-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
       />
       <button
         type="button"
         onClick={() => handleNameSearch(searchName)}
-        className="bg-white text-green-800 px-3 rounded-r-lg hover:bg-green-800 hover:text-white hover:scale-110 transition border-y border-r border-gray-300"
+        className="bg-white text-green-800 px-3 rounded-r-lg hover:bg-green-800 hover:text-white hover:scale-105 transition border-y border-r border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
       >
         <Search className="w-5 h-5" />
       </button>
@@ -145,7 +155,7 @@ const handleYearSearch = (year) => {
       <select
         value={filterPosition}
         onChange={(e) => setFilterPosition(e.target.value)}
-        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-green-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
       >
         <option value="">All Leaders</option>
         <option value="President">President</option>
@@ -161,12 +171,12 @@ const handleYearSearch = (year) => {
         placeholder="Search by year"
         value={year}
         onChange={(e) => setYear(e.target.value)}
-        className="flex-1 border-y border-l border-gray-300 rounded-l-lg px-3 py-2 focus:ring-2 focus:ring-green-500 focus:outline-none"
+        className="flex-1 border-y border-l border-gray-300 rounded-l-lg px-3 py-2 focus:ring-1 focus:ring-green-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
       />
       <button
         type="button"
         onClick={() => handleYearSearch(year)}
-        className="bg-white text-green-800 px-3 rounded-r-lg hover:bg-green-800 hover:text-white hover:scale-110 transition border-y border-r border-gray-300"
+        className="bg-white text-green-800 px-3 rounded-r-lg hover:bg-green-800 hover:text-white hover:scale-105 transition border-y border-r border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
       >
         <Search className="w-5 h-5" />
       </button>
@@ -176,10 +186,11 @@ const handleYearSearch = (year) => {
 
 
       {/* Leaders Table */}
+      <div className="p-4 dark:bg-gray-800 rounded-lg shadow">
       <div className="bg-white shadow overflow-x-auto">
         <table className="min-w-full text-sm">
-          <thead className="bg-white border-y-2 text-base">
-            <tr>
+          <thead className="bg-white border-y-2 text-base dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600">
+            <tr >
               <th className="px-4 py-3 text-left font-medium">Photo</th>
               <th className="px-4 py-3 text-left font-medium">Name</th>
               <th className="px-4 py-3 text-left font-medium">Position</th>
@@ -189,7 +200,7 @@ const handleYearSearch = (year) => {
           </thead>
           <tbody>
             {filteredLeaders.map((leader, idx) => (
-              <tr key={idx} className="border-t">
+              <tr key={idx} className="border-t dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
                 <td className="px-4 py-1">
                   <img
                     src={leader.photo}
@@ -210,6 +221,7 @@ const handleYearSearch = (year) => {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   );
 }
