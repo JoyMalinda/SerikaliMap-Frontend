@@ -29,32 +29,32 @@ export default function Presidents() {
 
   if (loading) {
     return (
-      <div className="space-y-6 animate-pulse">
+      <div className="space-y-6 animate-pulse m-4">
         {/* Fake current leaders cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[...Array(2)].map((_, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-lg shadow p-4 flex items-center space-x-4"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow p-4 flex items-center space-x-4"
             >
-              <div className="w-16 h-16 bg-gray-300 rounded-full" />
+              <div className="w-16 h-16 bg-gray-300 dark:bg-gray-700 rounded-full" />
               <div className="space-y-2">
-                <div className="w-32 h-4 bg-gray-300 rounded" />
-                <div className="w-20 h-3 bg-gray-200 rounded" />
+                <div className="w-32 h-4 bg-gray-300 dark:bg-gray-700 rounded" />
+                <div className="w-20 h-3 bg-gray-200 dark:bg-gray-700 rounded" />
               </div>
             </div>
           ))}
         </div>
 
         {/* Fake search/filter bar */}
-        <div className="bg-white shadow rounded-lg p-4 space-y-3">
-          <div className="w-full h-10 bg-gray-200 rounded" />
-          <div className="w-full h-10 bg-gray-200 rounded" />
+        <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-4 space-y-3">
+          <div className="w-full h-10 bg-gray-200 dark:bg-gray-700 rounded" />
+          <div className="w-full h-10 bg-gray-200 dark:bg-gray-700 rounded" />
         </div>
 
         {/* Fake table */}
-        <div className="bg-white rounded-lg shadow overflow-x-auto">
-          <div className="w-full h-40 bg-gray-200" />
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-x-auto">
+          <div className="w-full h-40 bg-gray-200 dark:bg-gray-700" />
         </div>
       </div>
     );
@@ -62,8 +62,8 @@ export default function Presidents() {
 
   if (error || !data) {
     return (
-      <div className="bg-red-500 text-white p-4 rounded-lg text-center">
-        Failed to fetch national leaders
+      <div className="bg-red-400 dark:bg-red-900 text-white p-4 rounded-lg text-center m-6">
+        <p className="">Failed to fetch national leaders</p>
       </div>
     );
   }

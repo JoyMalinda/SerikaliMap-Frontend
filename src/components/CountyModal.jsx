@@ -7,6 +7,17 @@ import pathBounds from "svg-path-bounds";
 export default function CountyModal({ countyId, onClose }) {
   const [data, setData] = useState(null);
   const [hoveredConstituency, setHoveredConstituency] = useState(null);
+
+  function formatPosition(key) {
+  const map = {
+    governor: "Governor",
+    deputy_governor: "Deputy Governor",
+    senator: "Senator",
+    women_rep: "Women Representative",
+    mp: "MP"
+  };
+  return map[key] || key.replace("_", " ");
+}
   
 
   useEffect(() => {
@@ -51,6 +62,12 @@ export default function CountyModal({ countyId, onClose }) {
     return [(x0 + x1) / 2, (y0 + y1) / 2];
   }*/
 
+    function toTitleCase(str) {
+  return str.replace(/\w\S*/g, (txt) => {
+    return txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase();
+  });
+}
+
 
   return (
     <div className="fixed inset-0 backdrop-blur-lg flex items-center justify-center z-50">
@@ -81,7 +98,7 @@ export default function CountyModal({ countyId, onClose }) {
                 <img
                   src={leader.photo_url}
                   alt={leader.name}
-                  className="w-16 h-16 object-cover rounded-lg border border-gray-200 dark:border-b-gray-700"
+                  className="w-16 h-16 object-cover rounded-lg border border-gray-200 dark:border-gray-700"
                 />
                 <div className="flex-1">
                   <h3 className="font-semibold text-gray-900 dark:text-white">
@@ -90,7 +107,7 @@ export default function CountyModal({ countyId, onClose }) {
                   <div className="flex justify-between items-center">
                     <div>
                        <p className="text-sm text-gray-800 dark:text-gray-300">
-                            {leader.position}
+                            {formatPosition(role)}
                         </p>
                     </div>
                     <div>
@@ -115,6 +132,7 @@ export default function CountyModal({ countyId, onClose }) {
             {constituencies.map((c) => (
               <g key={c.id}>
                 <path
+                  id={c.name}
                   d={c.svgPath}
                   className={`stroke-gray-400 stroke-[0.02] ${
                     hoveredConstituency?.id === c.id
@@ -140,8 +158,8 @@ export default function CountyModal({ countyId, onClose }) {
                 className="w-16 h-16 object-cover rounded-lg border border-gray-200 dark:border-gray-700"
               />
               <div className="flex-1">
-                <h4 className="font-semibold text-gray-900 dark:text-gray-300">
-                  {hoveredConstituency.mp.name}
+                <h4 className="font-semibold text-gray-900 dark:text-gray-300 capitalize mb-1">
+                  {toTitleCase(hoveredConstituency.mp.name)}
                 </h4>
                 <div className="flex justify-between items-center gap-6">
                     <div>

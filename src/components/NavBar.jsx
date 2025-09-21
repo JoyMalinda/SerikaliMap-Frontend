@@ -88,10 +88,10 @@ export default function NavBar() {
           isOpen ? "max-h-60" : "max-h-0"
         }`}
       >
-        <div className="px-4 pb-4 space-y-3 bg-green-100 dark:bg-gray-800">
+        <div className="px-4 pb-4 space-y-4 bg-green-100 dark:bg-gray-800">
           <a
             href="/"
-            className="block text-gray-800 dark:text-gray-200 hover:underline pt-2"
+            className="block text-gray-800 dark:text-gray-200 hover:underline pt-4"
           >
             Home
           </a>
@@ -111,7 +111,7 @@ export default function NavBar() {
           {/* Dark Mode Toggle with Label */}
           <button
             onClick={toggleTheme}
-            className="flex items-center space-x-2 p-2 rounded-md bg-green-300"
+            className="flex items-center space-x-2 p-2 rounded-md border-1 border-green-300"
           >
             {theme === "light" ? (
               <>
@@ -121,7 +121,7 @@ export default function NavBar() {
             ) : (
               <>
                 <Sun className="w-5 h-5 text-yellow-400" />
-                <span className="text-gray-800">Light Mode</span>
+                <span className="text-gray-200">Light Mode</span>
               </>
             )}
           </button>
